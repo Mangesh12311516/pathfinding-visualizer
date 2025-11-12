@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinding Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <h1>Pathfinding Visualizer</h1>
+        <div class="controls">
+            <select id="algorithm-select">
+                <option value="dijkstra">Dijkstra's Algorithm</option>
+                <option value="astar">A* Search</option>
+                <option value="bellmanford">Bellman-Ford Algorithm</option>
+                <option value="bfs">Breadth-First Search (BFS)</option>
+                <option value="dfs">Depth-First Search (DFS)</option>
+            </select>
+            <button id="visualize-btn">Visualize!</button>
+            <button id="clear-board-btn">Clear Board</button>
+            <button id="clear-path-btn">Clear Path</button>
+        </div>
+    </nav>
+    
+    <div id="edit-bar">
+        <div class="brush-palette">
+            <strong>Brush:</strong>
+            <div class="brush-option">
+                <input type="radio" id="brush-wall" name="brush" value="wall" checked>
+                <label for="brush-wall">Wall</label>
+                <div class="node node-wall-legend"></div>
+            </div>
+            <div class="brush-option">
+                <input type="radio" id="brush-light" name="brush" value="weight_light">
+                <label for="brush-light">Light (+5)</label>
+                <div class="node node-weight-light-legend"></div>
+            </div>
+            <div class="brush-option">
+                <input type="radio" id="brush-heavy" name="brush" value="weight_heavy">
+                <label for="brush-heavy">Heavy (+20)</label>
+                <div class="node node-weight-heavy-legend"></div>
+            </div>
+            <div class="brush-option">
+                <input type="radio" id="brush-negative" name="brush" value="weight_negative">
+                <label for="brush-negative">Negative (-5)</label>
+                <div class="node node-weight-negative-legend"></div>
+            </div>
+            <div class="brush-option">
+                <input type="radio" id="brush-erase" name="brush" value="erase">
+                <label for="brush-erase">Eraser</label>
+            </div>
+        </div>
+        <div class="instructions">
+            Drag start/end nodes. Select a brush and click/drag to edit the grid.
+        </div>
+    </div>
+
+    <div id="stats-bar">
+        <span id="stats-message">Select an algorithm and click Visualize!</span>
+        <span id="stats-time"></span>
+        <span id="stats-visited"></span>
+        <span id="stats-path"></span>
+    </div>
+
+    <div id="grid-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

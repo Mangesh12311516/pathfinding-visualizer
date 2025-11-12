@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+nav h1 { margin: 0; font-size: 1.5em; }
+
+.controls button, .controls select {
+    padding: 8px 12px; margin: 0 5px; border: none; border-radius: 4px;
+    background-color: #007BFF; color: white; cursor: pointer; font-size: 1em;
+}
+
+.controls button:hover { background-color: #0056b3; }
+
+#edit-bar {
+    width: 100%;
+    background-color: #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+}
+
+.brush-palette { display: flex; align-items: center; flex-wrap: wrap; }
+.brush-option { display: flex; align-items: center; margin-left: 15px; }
+.brush-option label { margin: 0 5px; cursor: pointer;}
+.brush-option input { cursor: pointer; }
+
+#stats-bar {
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    color: #555;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#stats-bar span { margin: 0 15px; }
+#stats-message.warning { color: #dc3545; }
+
+.node {
+    width: 25px;
+    height: 25px;
+    outline: 1px solid #c0c0c0;
+    display: inline-block;
+}
+
+#grid-container { margin-top: 20px; display: grid; }
+
+/* --- Node State Styles --- */
+.node-start { background-color: #28a745; cursor: move; }
+.node-end { background-color: #dc3545; cursor: move; }
+.node-wall { background-color: #343a40; animation: wall-animation 0.3s ease-out; }
+
+/* --- Weight Styles --- */
+.node-weight-light { background-color: #89cff0; } /* Baby Blue */
+.node-weight-heavy { background-color: #007bff; } /* Strong Blue */
+.node-weight-negative { background-color: #8a2be2; } /* Blue Violet */
+
+.node-visited { animation: visited-animation 1.5s forwards; }
+.node-shortest-path { animation: path-animation 1.5s forwards; }
+
+.node-negative-cycle {
+    background-color: #ff0000; /* Bright Red */
+    animation: cycle-flash 0.5s infinite alternate;
+}
+
+/* --- Legend Styles --- */
+.node-wall-legend, .node-weight-light-legend, .node-weight-heavy-legend, .node-weight-negative-legend {
+    width: 20px;
+    height: 20px;
+    outline: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+}
+.node-wall-legend { background-color: #343a40; }
+.node-weight-light-legend { background-color: #89cff0; }
+.node-weight-heavy-legend { background-color: #007bff; }
+.node-weight-negative-legend { background-color: #8a2be2; }
+
+/* --- Keyframe Animations --- */
+@keyframes visited-animation {
+    0% { transform: scale(0.3); background-color: #ffeb3b; border-radius: 100%; }
+    50% { background-color: #00bcd4; }
+    75% { transform: scale(1.2); background-color: #2196F3; }
+    100% { transform: scale(1); background-color: #64b5f6; }
+}
+@keyframes path-animation {
+    0% { transform: scale(0.6); background-color: #ffeb3b; }
+    100% { transform: scale(1); background-color: #ffc107; }
+}
+@keyframes wall-animation {
+    0% { transform: scale(0.7); }
+    100% { transform: scale(1); }
+}
+@keyframes cycle-flash {
+    from { background-color: #ff0000; }
+    to { background-color: #343a40; } /* Flash between red and wall color */
+}
