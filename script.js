@@ -201,14 +201,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         algorithmRunning = false;
     }
+
     function updateStats(time, visitedCount, path) {
         statsTime.textContent = `Time: ${Math.round(time)}ms`;
         statsVisited.textContent = `Visited: ${visitedCount} nodes`;
-        if (!path.length || path[path.length - 1] !== grid[endNodeCoords.row][endNodeCoords.col]) {
-            if(!statsMessage.classList.contains('warning')) statsMessage.textContent = 'Path Not Found!';
+        const endNode = grid[endNodeCoords.row][endNodeCoords.col];
+        if (endNode.previousNode === null) {
+            if (!statsMessage.classList.contains('warning')) {
+                statsMessage.textContent = 'Path Not Found!';
+            }
             statsPath.textContent = 'Path: 0 nodes';
         } else {
-            if(!statsMessage.classList.contains('warning')) statsMessage.textContent = 'Path Found!';
+            if (!statsMessage.classList.contains('warning')) {
+                statsMessage.textContent = 'Path Found!';
+            }
             statsPath.textContent = `Path: ${path.length} nodes`;
         }
     }
